@@ -64,7 +64,7 @@ pub fn process_instruction(
         TrackInstruction::GetTrack { id } => {
             msg!("Getting: {}", id);
             // Execute program code to get a track
-            // Actually this might just be client, but good to have a placeholder for future operations
+            // Actually this is currently just on the client, but leaving as a placeholder for future operations
         },
     }
     Ok(())
@@ -82,54 +82,3 @@ pub fn upload_track(
     msg!("Saved CID: {}", track_account.cid);
     Ok(())
 }
-
-// // Sanity tests
-// #[cfg(test)]
-// mod test {
-//     use super::*;
-//     use solana_program::clock::Epoch;
-//     use std::mem;
-
-//     #[test]
-//     fn test_sanity() {
-//         let program_id = Pubkey::default();
-//         let key = Pubkey::default();
-//         let mut lamports = 0;
-//         let mut data = vec![0; mem::size_of::<u32>()];
-//         let owner = Pubkey::default();
-//         let account = AccountInfo::new(
-//             &key,
-//             false,
-//             true,
-//             &mut lamports,
-//             &mut data,
-//             &owner,
-//             false,
-//             Epoch::default(),
-//         );
-//         let instruction_data: Vec<u8> = Vec::new();
-
-//         let accounts = vec![account];
-
-//         assert_eq!(
-//             GreetingAccount::try_from_slice(&accounts[0].data.borrow())
-//                 .unwrap()
-//                 .counter,
-//             0
-//         );
-//         process_instruction(&program_id, &accounts, &instruction_data).unwrap();
-//         assert_eq!(
-//             GreetingAccount::try_from_slice(&accounts[0].data.borrow())
-//                 .unwrap()
-//                 .counter,
-//             1
-//         );
-//         process_instruction(&program_id, &accounts, &instruction_data).unwrap();
-//         assert_eq!(
-//             GreetingAccount::try_from_slice(&accounts[0].data.borrow())
-//                 .unwrap()
-//                 .counter,
-//             2
-//         );
-//     }
-// }
