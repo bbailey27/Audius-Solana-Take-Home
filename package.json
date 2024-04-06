@@ -1,0 +1,55 @@
+{
+  "name": "audius-solana-take-home",
+  "version": "1.0.0",
+  "description": "Basic track upload and retrieval system",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbailey27/Audius-Solana-Take-Home.git"
+  },
+  "author": "Bridget Bailey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbailey27/Audius-Solana-Take-Home/issues"
+  },
+  "homepage": "https://github.com/bbailey27/Audius-Solana-Take-Home#readme",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/client/main.ts",
+    "start-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health start",
+    "lint": "eslint --ext .ts src/client/* && prettier --check \"src/client/**/*.ts\"",
+    "lint:fix": "eslint --ext .ts src/client/* --fix && prettier --write \"src/client/**/*.ts\"",
+    "build": "cargo build-bpf --manifest-path=./src/program/Cargo.toml --bpf-out-dir=dist/program",
+    "clean": "cargo clean --manifest-path=./src/program/Cargo.toml && rm -rf ./dist",
+    "test": "cargo test-bpf --manifest-path=./src/program/Cargo.toml",
+    "deploy": "solana program deploy ./dist/program/trackuploader.so",
+    "pretty": "prettier --write '{,src/**/}*.ts'"
+  },
+  "dependencies": {
+    "@coral-xyz/borsh": "^0.29.0",
+    "@solana/buffer-layout": "^4.0.1",
+    "@solana/web3.js": "^1.33.0",
+    "borsh": "^0.4.0",
+    "buffer": "^6.0.3",
+    "mz": "^2.7.0",
+    "yaml": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/eslint": "^8.2.2",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/mz": "^2.7.2",
+    "@types/prettier": "^2.1.5",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.1.2",
+    "start-server-and-test": "^1.11.6",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
